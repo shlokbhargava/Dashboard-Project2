@@ -1,0 +1,22 @@
+.nav-area {
+  font-family: 'Signika', sans-serif;
+  font-size: medium;
+  color: white; }
+  .nav-area div {
+    width: 80px;
+    height: 80px;
+    background: #d3abab;
+    transition: width 0.5s; }
+    .nav-area div a {
+      text-decoration: none;
+      color: white; }
+      .nav-area div a i {
+        color: white; }
+      .nav-area div a span {
+        visibility: hidden; }
+  .nav-area div:hover {
+    width: 260px; }
+    .nav-area div:hover span {
+      left: 2%;
+      font-size: larger;
+      visibility: visible; }

@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/css/home.css">
+
+
+<!-- TODO Upload document using multer -->
+
+<h4 class="text-center mt-4"><%= title %></h4>
+
+<div class="container-fluid mt-5">
+    <div class="row">
+            
+        <%- include('_side-nav-area') -%>
+
+        <div class="col-12 col-sm">
+            <!-- Home Section -->
+            <div class="home">
+                <form action="/uploads" class="upload-documents" enctype="multipart/form-data" method="POST">
+                    <div class="form-group col-6 offset-4">
+                        <label>Contact Number</label>
+                        <input type="tel" name="contact_number" class="form-control-file" required>
+                    </div>
+                    <div class="form-group col-6 offset-4">
+                        <label>Upload Document</label>
+                        <input type="file" name="document" class="form-control-file" required>
+                    </div>
+                    <button class="btn btn-raised btn-primary offset-6"><i class="fas fa-file-upload"></i> Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

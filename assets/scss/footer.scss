@@ -1,0 +1,76 @@
+// Variables
+$text-color: floralwhite;
+$background-color: rgb(32, 150, 150);
+$border-color: rgb(42, 95, 95);
+$background-image: linear-gradient(50deg, rgb(6, 68, 68) 0%, darkslategrey 74%);
+$font-family: 'Signika';
+
+footer {
+    background-image: $background-image;
+    color: $text-color;
+
+    .footer {
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        font-size: 15px;
+        font-family: $font-family;
+    
+        ul {
+    
+            margin: 30px;
+            font-size: large;
+    
+            li {
+                list-style: none;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                font-size: medium;
+                
+                a {
+                    color: $text-color;
+                }
+    
+                .btn {
+                    background-image: $background-image;
+                    border: solid $text-color 1px;
+                    font-size: medium;
+    
+                    i {
+                        color: $text-color;
+                    }
+        
+                }
+    
+            }
+        }
+    }
+
+    .float-right {
+
+        .btn:hover {
+            background-color: white;
+            outline: black solid 2px;
+            color: black;
+        }
+    }
+}
+
+.last-section {
+
+    height: 10vh;
+    background-image: $background-image;
+    font-family: $font-family;
+
+    .line {
+        border: solid 1px;        
+    }
+    
+    .copyright {
+        text-align: center;
+        margin-top: 1.5%;
+        color: $text-color;
+    }
+}

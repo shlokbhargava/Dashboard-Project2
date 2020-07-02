@@ -1,0 +1,64 @@
+$color: rgb(58, 157, 196);
+$border: 2px solid $color;
+$background-color: #e7ebfa;
+$color-2: white; 
+$font-family: 'Signika', sans-serif;
+
+body {
+    background-color: #f1f3fa;
+}
+
+h4 {
+    color: $color;
+    font-family: $font-family;
+}
+
+
+.payment-reports {
+    min-height: 600px!important;
+    height: auto;
+    font-family: $font-family;
+    border: $border;
+    font-size: medium;
+    border-radius: 1rem;
+
+    .card-header {
+        border-bottom: $border;
+        
+        .search {
+            border: $border;
+            border-radius: 20px;
+            padding: 10px;
+            color: $color;
+        }
+        .btn {
+            background-color: $background-color;
+            outline: 1px solid $color-2;
+            margin-top: 2.5%;
+            color: rgb(44, 73, 85);
+        }
+        .btn:hover {
+            background-color: $color;
+            color: $color-2; 
+            transition: linear 0.5s;
+        }
+    }
+
+    .card-body {
+
+        table {
+            
+            tbody {
+        
+                tr {
+                    background-color: $background-color;
+                    cursor: pointer;
+                }
+                tr:hover {
+                    background-color: $color;
+                    color: $color-2;
+                }
+            }
+        }
+    }
+}

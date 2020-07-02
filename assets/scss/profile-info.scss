@@ -1,0 +1,63 @@
+$color: darkcyan;
+$border: 2px solid $color;
+$background-color: #e5f5e5;
+$color-2: white;
+$font-family: 'Signika', sans-serif; 
+
+body {
+    background-color: #f1f8f1;
+}
+
+h4 {
+    color: $color;
+    font-family: $font-family;
+}
+
+.personal-info {
+    min-height: 600px!important;
+    height: auto;
+    font-family: $font-family;
+    border: $border;
+    font-size: medium;
+    border-radius: 1rem;
+
+    .card-header {
+        border-bottom: $border;
+        
+        .search {
+            border: $border;
+            border-radius: 20px;
+            padding: 10px;
+            color: $color;
+        }
+        .btn {
+            margin-top: 2.5%;
+            background-color: $background-color;
+            outline: 1px solid $color-2;
+            color: rgb(1, 75, 75);
+        }
+        .btn:hover {
+            background-color: $color;
+            color: $color-2; 
+            transition: linear 0.5s;
+        }
+    }
+
+    .card-body {
+
+        table {
+            
+            tbody {
+        
+                tr {
+                    background-color: $background-color;
+                    cursor: pointer;
+                }
+                tr:hover {
+                    background-color: $color;
+                    color: $color-2;
+                }
+            }
+        }
+    }
+}

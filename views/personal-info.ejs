@@ -1,0 +1,213 @@
+<link rel="stylesheet" href="/css/profile-info.css">
+
+
+<h4 class="text-center mt-4"><%= title %></h4>
+
+<div class="container-fluid mt-5">
+    <div class="row">
+
+        <%- include('_side-nav-area') -%>
+
+        <div class="col-12 col-sm">
+            <!-- Personal Information Section -->
+            <div class="personal-info card">
+                <div class="card-header">
+                    <form class="form-inline float-left">
+                        <input class="form-control search" type="search" placeholder="Search Customer">
+                    </form>
+                    <button class="btn float-right"><i class="fas fa-save"></i> Save</button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn float-right add" data-toggle="modal" data-target="#addProfile">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                    <button class="btn float-right" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive-sm text-center">
+                        <thead class="thead-dark">
+                            <tr>    
+                                <th scope="col"></th>
+                                <th scope="col">S.No</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Contact No</th>
+                                <th scope="col">No of Warehouse</th>
+                                <th scope="col">Warehouse Name</th>
+                                <th scope="col">Area</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(user of users) { %>
+                                <tr class='clickable-row' data-toggle="warehouse-row">
+                                    <th>
+                                        <div class="form-check">
+                                            <input class="form-check-input check-box" type="checkbox" value="<%= user._id %>">
+                                        </div>
+                                    </th>
+                                    <th scope="row"><%= user.sNo %></th>
+                                    <td><%= user.category %></td>
+                                    <td><%= user.customer_name %></td>
+                                    <td><%= user.address %></td>
+                                    <td><%= user.contact_number %></td>
+                                    <td><%= user.no_of_warehouse %></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="/users/delete/<%= user._id %>" class="btn float-right del-btn"><i class="fas fa-trash"></i></a></td>
+                                    <td>                    
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn float-right add" data-toggle="modal" data-target="#editProfile">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr id="warehouse-row">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><%= user.warehouse_name %></td>
+                                    <td><%= user.warehouse_area %></td>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal --> <!-- Add Profile -->
+<div class="modal fade" id="addProfile" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/users/add-profile" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col-2">
+                            <label>S.No</label>
+                            <input type="number" class="form-control s-no" name="sNo" value="" disabled>
+                        </div>
+                        <div class="form-group col">
+                            <label>Customer Name<span class="required">*</span></label>
+                            <input type="text" class="form-control" name="customer_name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Category<span class="required">*</span></label>
+                            <input type="text" class="form-control" name="category" required>
+                        </div>
+                        <div class="form-group col">
+                            <label>Number of Warehouses</label>
+                            <input type="number" class="form-control" name="no_of_warehouse">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Address<span class="required">*</span></label>
+                        <input type="text" class="form-control" name="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number<span class="required">*</span></label>
+                        <input type="tel" class="form-control" name="contact_number" required>
+                    </div>
+                    <div class="form-row warehouse-input">
+                        <div class="form-group col-6">
+                            <label>Warehouse Name</label>
+                            <input type="text" class="form-control" name="warehouse_name">
+                        </div>
+                        <div class="form-group col-4">
+                            <label>Area of Warehouse</label>
+                            <input type="number" class="form-control" placeholder="In Sft." name="warehouse_area">
+                        </div>
+                        <button type="button" class="btn btn-danger del">Delete</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-outline-secondary">Clear</button>&nbsp;
+                        <button type="submit" class="btn btn-outline-primary save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal --> <!-- Edit Profile -->
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/users/edit-profile/<%= user._id %>" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Customer Name<span class="required">*</span></label>
+                            <input type="text" class="form-control" name="customer_name" value="<%= user.customer_name %>" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Category<span class="required">*</span></label>
+                            <input type="text" class="form-control" name="category" value="<%= user.category %>" required>
+                        </div>
+                        <div class="form-group col">
+                            <label>Number of Warehouses</label>
+                            <input type="number" class="form-control" name="no_of_warehouse" value="<%= user.no_of_warehouse %>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Address<span class="required">*</span></label>
+                        <input type="text" class="form-control" name="address" value="<%= user.address %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number<span class="required">*</span></label>
+                        <input type="tel" class="form-control" name="contact_number" value="<%= user.contact_number %>" required>
+                    </div>
+                    <div class="form-row warehouse-input">
+                        <div class="form-group col-6">
+                            <label>Warehouse Name</label>
+                            <input type="text" class="form-control" name="warehouse_name" value="<%= user.warehouse_name %>">
+                        </div>
+                        <div class="form-group col">
+                            <label>Area of Warehouse</label>
+                            <input type="number" class="form-control" placeholder="In Sft." name="warehouse_area" value="<%= user.warehouse_area %>">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-outline-secondary">Clear</button>&nbsp;
+                        <button type="submit" class="btn btn-outline-primary">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/profile-info.js"></script>

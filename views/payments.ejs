@@ -1,0 +1,213 @@
+<link rel="stylesheet" href="/css/payments.css">
+
+
+<h4 class="text-center mt-4"><%= title %></h4>
+
+<div class="container-fluid mt-5">
+    <div class="row">
+
+        <%- include('_side-nav-area') -%>
+
+        <div class="col-12 col-sm">
+            <!-- Payment Transactions -->
+            <div class="payment-transaction card">
+                <div class="card-header">
+                    <form class="form-inline float-left">
+                        <input class="form-control search" type="search" placeholder="Search Customer">
+                    </form>
+                    <button class="btn float-right"><i class="fas fa-save"></i> Save</button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn float-right add" data-toggle="modal" data-target="#addPayment">
+                      <i class="fas fa-plus"></i> Add
+                    </button>
+                    <button class="btn float-right" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive-sm text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">S.No</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Tranx ID</th>
+                                <th scope="col">Amount Sent</th>
+                                <th scope="col">Transaction Type</th>
+                                <th scope="col">Other Information</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <% for(payment of payment) { %>
+                            <tr>  
+                                <th>
+                                  <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                  </div>
+                                </th>
+                                <th scope="row"><%= payment.sNo %></th>
+                                <td><%= payment.category %></td>
+                                <td><%= payment.customer_name %></td>
+                                <td><%= payment.transaction_ID %></td>
+                                <td><%= payment.amount %></td>
+                                <td><%= payment.transaction_type %></td>
+                                <td><%= payment.other_info %></td>
+                                <td><a href="/users/payment/delete/<%= payment._id %>" class="btn float-right del-btn"><i class="fas fa-trash"></i></a></td>
+                                <td>                    
+                                  <!-- Button trigger modal -->
+                                    <button type="button" class="btn float-right add" data-toggle="modal" data-target="#editPayment">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                </td>
+                            </tr>
+                          <% } %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal --> <!-- Add Payment -->
+<div class="modal fade" id="addPayment" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Add Payment</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form action="/users/payment/add-payment" method="POST">
+                  <div class="form-row">
+                      <div class="form-group col-2">
+                          <label>S.No</label>
+                          <input type="number" class="form-control s-no" name="sNo" value="" disabled>
+                      </div>
+                      <div class="form-group col">
+                        <select class="form-control custom-select" name="customer_name" required>
+                            <option selected>Customer Name</option>
+                            <% for(user of users) { %>
+                              <option value="<%= user.customer_name %>"><%= user.customer_name %></option>
+                            <% } %>
+                        </select>
+                    </div>  
+                    <div class="form-group col">
+                      <label>Contact Number<span class="required">*</span></label>
+                      <input type="tel" class="form-control" name="contact_number" placeholder="Same as in profile information" requierd>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-6">
+                          <label>Category<span class="required">*</span></label>
+                          <input type="text" class="form-control" name="category" required>
+                      </div>
+                      <div class="form-group col">
+                        <label>Amount Sent<span class="required">*</span></label>
+                        <input type="number" class="form-control" name="amount" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-6">
+                      <label>Transaction ID<span class="required">*</span></label>
+                      <input type="number" class="form-control" name="transaction_ID" required>
+                    </div>
+                    <div class="form-group col">
+                        <label>Transaction Type<span class="required">*</span></label>
+                        <input type="text" class="form-control" name="transaction_type" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Other Information</label>
+                    <input type="text" class="form-control" name="other_info">
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden" class="form-control" name="noOfTran" value="1">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="reset" class="btn btn-outline-secondary">Clear</button>&nbsp;
+                      <button type="submit" class="btn btn-outline-primary save">Save</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<!-- Modal --> <!-- Edit Payment -->
+<div class="modal fade" id="editPayment" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Edit Payment</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form action="/users/payment/edit-payment/<%= payment._id %>" method="POST">
+                  <div class="form-row">
+                      <div class="form-group col-2">
+                          <label>S.No</label>
+                          <input type="number" class="form-control s-no" name="sNo" value="" disabled>
+                      </div>
+                      <div class="form-group col">
+                        <select class="form-control custom-select" name="customer_name" required>
+                            <option selected>Customer Name </option>
+                            <% for(user of users) { %>
+                              <option value="<%= user.customer_name %>"><%= user.customer_name %></option>
+                            <% } %>
+                        </select>
+                    </div>  
+                    <div class="form-group col">
+                      <label>Contact Number<span class="required">*</span></label>
+                      <input type="tel" class="form-control" name="contact_number" placeholder="Same as in profile information" value="<%= payment.contact_number %>" requierd>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-6">
+                          <label>Category<span class="required">*</span></label>
+                          <input type="text" class="form-control" name="category" value="<%= payment.category %>" required>
+                      </div>
+                      <div class="form-group col">
+                        <label>Amount Sent<span class="required">*</span></label>
+                        <input type="number" class="form-control" name="amount" value="<%= payment.amount %>" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-6">
+                      <label>Transaction ID<span class="required">*</span></label>
+                      <input type="number" class="form-control" name="transaction_ID" value="<%= payment.transaction_ID %>" required>
+                    </div>
+                    <div class="form-group col">
+                        <label>Transaction Type<span class="required">*</span></label>
+                        <input type="text" class="form-control" name="transaction_type" value="<%= payment.transaction_type %>" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Other Information</label>
+                    <input type="text" class="form-control" name="other_info" value="<%= payment.other_info %>">
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden" class="form-control" name="noOfTran" value="1">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="reset" class="btn btn-outline-secondary">Clear</button>&nbsp;
+                      <button type="submit" class="btn btn-outline-primary save">Edit</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<script src="/js/payment.js"></script>

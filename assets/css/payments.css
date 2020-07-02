@@ -1,0 +1,36 @@
+body {
+  background-color: #f1f8f1; }
+
+h4 {
+  color: darkcyan;
+  font-family: "Signika", sans-serif; }
+
+.payment-transaction {
+  min-height: 600px !important;
+  height: auto;
+  font-family: "Signika", sans-serif;
+  border: 2px solid darkcyan;
+  font-size: medium;
+  border-radius: 1rem; }
+  .payment-transaction .card-header {
+    border-bottom: 2px solid darkcyan; }
+    .payment-transaction .card-header .search {
+      border: 2px solid darkcyan;
+      border-radius: 20px;
+      padding: 10px;
+      color: darkcyan; }
+    .payment-transaction .card-header .btn {
+      margin-top: 2.5%;
+      background-color: #e5f5e5;
+      outline: 1px solid white;
+      color: #014b4b; }
+    .payment-transaction .card-header .btn:hover {
+      background-color: darkcyan;
+      color: white;
+      transition: linear 0.5s; }
+  .payment-transaction .card-body table tbody tr {
+    background-color: #e5f5e5;
+    cursor: pointer; }
+  .payment-transaction .card-body table tbody tr:hover {
+    background-color: darkcyan;
+    color: white; }

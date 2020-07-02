@@ -1,0 +1,42 @@
+footer {
+  background-image: linear-gradient(50deg, #064444 0%, darkslategrey 74%);
+  color: floralwhite; }
+  footer .footer {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: 15px;
+    font-family: "Signika"; }
+    footer .footer ul {
+      margin: 30px;
+      font-size: large; }
+      footer .footer ul li {
+        list-style: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: medium; }
+        footer .footer ul li a {
+          color: floralwhite; }
+        footer .footer ul li .btn {
+          background-image: linear-gradient(50deg, #064444 0%, darkslategrey 74%);
+          border: solid floralwhite 1px;
+          font-size: medium; }
+          footer .footer ul li .btn i {
+            color: floralwhite; }
+  footer .float-right .btn:hover {
+    background-color: white;
+    outline: black solid 2px;
+    color: black; }
+
+.last-section {
+  height: 10vh;
+  background-image: linear-gradient(50deg, #064444 0%, darkslategrey 74%);
+  font-family: "Signika"; }
+  .last-section .line {
+    border: solid 1px; }
+  .last-section .copyright {
+    text-align: center;
+    margin-top: 1.5%;
+    color: floralwhite; }
