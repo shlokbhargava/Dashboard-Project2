@@ -2,3 +2,4 @@
 Database required: MongoDB, 
 to run: npm start, 
 port: 8000,
+initialize: npm init
